@@ -1,0 +1,30 @@
+﻿<Window x:Class="Football_Manager.Options"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Football_Manager"
+        mc:Ignorable="d"
+        Title="Options" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Fond_Herbe.jpeg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" Margin="0,40,0,0" Text="Option" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="30" Foreground="White" FontWeight="Bold"/>
+
+        <Button x:Name="BoutonFond" Content="Modifier la couleur de fond" HorizontalAlignment="Center" Margin="78,121,74,0" VerticalAlignment="Top" Width="244" Click="Click_CouleurFond" Foreground="White" Height="44" Background="{x:Null}" BorderBrush="White" FontSize="16" FontWeight="Bold" />
+
+        <Button x:Name="BoutonText" Content="Modifier la couleur du texte" HorizontalAlignment="Center" Margin="68,121,84,0" VerticalAlignment="Top" Width="244" Click="Click_CouleurTexte" Foreground="White" Height="44" Background="{x:Null}" BorderBrush="White" FontSize="16" FontWeight="Bold" Grid.Column="1" />
+
+        <TextBlock  x:Name="ExempleCouleurs"  Text="EXEMPLE" TextAlignment="Center" FontSize="20" Margin="241,214,241,140" Grid.ColumnSpan="2" Foreground="{Binding Path =CouleurTexte}" Background="{Binding Path =CouleurFond}" FontWeight="Bold" TextDecorations="{x:Null}" />
+
+        <Button Grid.Column="0" Content="OK" Height="25" Margin="0,330,0,0" Name="Option_Ok" VerticalAlignment="Top" Width="104" Click="Option_Ok_Click" />
+        <Button Grid.ColumnSpan="2" Content="Appliquer" Height="25" Margin="0,330,0,0" Name="Option_Appliquer" VerticalAlignment="Top" Width="104" Click="Option_Appliquer_Click" />
+        <Button Grid.Column="1" Content="Cancel" Height="25" Margin="0,330,0,0" Name="Option_Cancel" VerticalAlignment="Top" Width="104" Click="Option_Cancel_Click" />
+
+    </Grid>
+</Window>

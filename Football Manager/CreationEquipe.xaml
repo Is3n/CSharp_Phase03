@@ -1,0 +1,26 @@
+﻿<Window x:Class="Football_Manager.CreationEquipe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Football_Manager"
+        mc:Ignorable="d"
+        Title="CreationEquipe" Height="400" Width="300">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/Terrain_V.jpeg"/>
+        </Grid.Background>
+        <StackPanel Margin="0,0,0,0">
+            <TextBlock x:Name="Nom" HorizontalAlignment="Center" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nom : " VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" />
+            <TextBox  x:Name="NameBox" HorizontalAlignment="Center" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+
+            <TextBlock x:Name="DateCreation" HorizontalAlignment="Center" Margin="0,40,0,0" TextWrapping="Wrap" Text="Date de création : " VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" />
+            <TextBlock x:Name="AffDateCreation" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" />
+
+            <TextBlock x:Name="Logo" HorizontalAlignment="Center" Margin="0,40,0,0" TextWrapping="Wrap" Text="Logo : " VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20" />
+            <TextBox  x:Name="LogoBox" HorizontalAlignment="Center" Height="23" Margin="0,10,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+
+            <Button x:Name="BoutonOK" Content="Confirmer" HorizontalAlignment="Center" Margin="108,20" VerticalAlignment="Bottom" Width="76" Click="BoutonOK_Click" RenderTransformOrigin="0.54,4.217" />
+        </StackPanel>
+    </Grid>
+</Window>

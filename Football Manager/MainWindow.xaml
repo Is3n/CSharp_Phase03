@@ -1,0 +1,157 @@
+﻿<Window x:Class="Football_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Football_Manager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200" Closing="ClosingWindow">
+    <Window.Resources>
+        <local:MyDateConverter x:Key="MyDateConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="0">
+            <Menu Height="22" Margin="0,0,0,0" Background="#FFCDCBCB">
+                <MenuItem x:Name="Menu_File" Header="File">
+                    <MenuItem x:Name="Menu_Save" Header="Save" Click="File_Save_Click"/>
+                    <Separator />
+                    <Separator />
+                    <MenuItem x:Name="Menu_Exit" Header="Exit" Click="Menu_Exit_Click" FontWeight="Bold"/>
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Header="Option" Click="Tools_Option_Click"/>
+                    <Separator />
+                    <MenuItem x:Name="Tools_About" Header="About Box" Click="Tools_About_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="Menu_Text" Header="Text">
+                    <MenuItem x:Name="test_Norm" Header="Normal" Click="text_Norm_Click"/>
+                    <Separator />
+                    <MenuItem x:Name="test_min" Header="minuscules" Click="text_min_Click"/>
+                    <Separator />
+                    <MenuItem x:Name="Text_MAJ" Header="MAJUSCULES" Click="text_MAJ_Click"/>
+                </MenuItem>
+                <TextBlock Name="Menu_TextBox1" Text="Fichier utilisé : IsenClaes"/>
+            </Menu>
+        </StackPanel>
+
+        <!-- <Image x:Name="Fond_Herbe_jpeg" Source="Images/Fond_Herbe.jpeg" Height="30" Width="auto" Stretch="Fill"  Grid.Row="3" Grid.ColumnSpan="2"/> -->
+
+        <DataGrid x:Name="dgChampionnats" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1" BorderBrush="{x:Null}" Foreground="White" SelectionMode="Single" CanUserDeleteRows="True" RowBackground="Green" SelectionChanged="ChampionnatsDataGrid_OnSelectionChanged" >
+            <DataGrid.Background>
+                <ImageBrush ImageSource="Images/Fond_Herbe.jpeg"/>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom"  Width="*" Binding="{Binding Nom}"/>
+                <DataGridTextColumn Header="Création"  Width="auto" Binding="{Binding DateCreation, Converter={StaticResource MyDateConverter}}"/>
+                <DataGridTemplateColumn Header="Logo" Width="*" IsReadOnly="True" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Logo}" OpacityMask="Black" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Supprimer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="SupprimerChampionnat" Content="Supprimer" Height="auto" Width="auto" BorderBrush="White" FontWeight="Bold" FontSize="16" Foreground="White" Click="SupprimerChampionnat_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Fond_Herbe.jpeg" Stretch="UniformToFill"/>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Nouveau championnat" Grid.Row="2" Grid.Column="0" Height="40" Width="auto" BorderBrush="White" Foreground="White" FontWeight="Bold" FontSize="24" Click="AjoutChampionnat_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Ballon_Herbe.jpeg" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+        <DataGrid x:Name="dgEquipes" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="1" BorderBrush="{x:Null}" Foreground="White" Grid.Row="1" SelectionMode="Single" CanUserDeleteRows="True" RowBackground="Green" SelectionChanged="EquipesDataGrid_OnSelectionChanged">
+            <DataGrid.Background>
+                <ImageBrush ImageSource="Images/Fond_Herbe.jpeg"/>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom"  Width="*" Binding="{Binding Nom}"/>
+                <DataGridTextColumn Header="Création"  Width="auto" Binding="{Binding DateCreation, Converter={StaticResource MyDateConverter}}"/>
+                <!-- StringFormat=\{0:dd/MM/yyyy\}} -->
+                <DataGridTemplateColumn Header="Logo" Width="*" IsReadOnly="True" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Logo}" OpacityMask="Black" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Supprimer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="SupprimerEquipe" Content="Supprimer" Height="auto" Width="auto" BorderBrush="White" FontWeight="Bold" FontSize="16" Foreground="White" Click="SupprimerEquipe_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Fond_Herbe.jpeg" Stretch="UniformToFill"/>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Nouvelle équipe" Grid.Row="2" Grid.Column="1" Height="40" Width="auto" BorderBrush="White" Foreground="White" FontWeight="Bold" FontSize="24" Click="AjoutEquipe_Click" >
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Ballon_Herbe.jpeg" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+        <DataGrid x:Name="dgPersonnes" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2" BorderBrush="{x:Null}" Foreground="White" Grid.Row="1" SelectionMode="Single" CanUserDeleteRows="True" RowBackground="Green" SelectionChanged="PersonnesDataGrid_OnSelectionChanged">
+            <DataGrid.Background>
+                <ImageBrush ImageSource="Images/Fond_Herbe.jpeg"/>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom"  Width="auto" Binding="{Binding NomPrenom}"/>
+                <DataGridTextColumn Header="Age"  Width="auto" Binding="{Binding Age}"/>
+                <DataGridTextColumn Header="Position"  Width="auto" Binding="{Binding Position}"/>
+                <DataGridTemplateColumn Header="Photo" Width="*" IsReadOnly="True" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Photo}" OpacityMask="Black" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Supprimer" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="SupprimerPersonne" Content="Supprimer" Height="auto" Width="auto" BorderBrush="White" FontWeight="Bold" FontSize="16" Foreground="White" Click="SupprimerPersonne_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/Fond_Herbe.jpeg" Stretch="UniformToFill"/>
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Nouveau coach" Grid.Row="2" Grid.Column="2" Height="40" Width="auto" BorderBrush="White" Foreground="White" FontWeight="Bold" FontSize="24" Click="AjoutCoach_Click" Margin="0,0,198,0" >
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Ballon_Herbe.jpeg" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+        <Button Content="Nouveau joueur" Grid.Row="2" Grid.Column="2" Height="40" Width="auto" BorderBrush="White" Foreground="White" FontWeight="Bold" FontSize="24" Click="AjoutJoueur_Click" Margin="198,0,0,0" >
+            <Button.Background>
+                <ImageBrush ImageSource="Images/Ballon_Herbe.jpeg" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+
+</Window>
